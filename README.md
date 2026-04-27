@@ -1,6 +1,6 @@
-# Cursor Coding Rules Skills
+# Cursor Coding Skills
 
-Optimized Cursor Skills collection using flat directory structure to ensure automatic loading by Cursor.
+Optimized Cursor Skills collection for task-specific capabilities and tools.
 
 [中文文档](./README_zh.md)
 
@@ -8,63 +8,36 @@ Optimized Cursor Skills collection using flat directory structure to ensure auto
 
 ```
 skills-cursor/
-├── coding-rules-core-enforcement/SKILL.md       🔴 Highest Priority
-├── coding-rules-no-assumption/SKILL.md          ⚠️ Core Principles
-├── coding-rules-no-inference/SKILL.md           ⚠️ Core Principles
-├── coding-rules-task-identification/SKILL.md    ⚠️ Core Principles
-├── coding-rules-decision-approval/SKILL.md      ⚠️ Core Principles
-├── coding-rules-problem-focus/SKILL.md          ℹ️ Workflow
-├── coding-rules-no-report-files/SKILL.md        ℹ️ Workflow
-├── coding-rules-context-compression/SKILL.md    ℹ️ Workflow
-├── coding-rules-remote-cleanup/SKILL.md         ℹ️ Workflow
-├── coding-rules-github-cli/SKILL.md             ℹ️ Tool Config
-└── coding-rules-zh/                             📁 Chinese Versions
+├── coding-rules-context-compression/SKILL.md   ℹ️ Context Compression
+├── coding-rules-remote-cleanup/SKILL.md        ℹ️ Remote Process Cleanup
+├── coding-rules-github-cli/SKILL.md            🛠️ GitHub CLI Guide
+└── coding-rules-zh/                            📁 Chinese Versions (Backup)
 ```
 
-## 📋 Skills List
+## 📋 Skills List (3 Skills)
 
-### 🔴 Highest Priority
-- **coding-rules-core-enforcement**: Core enforcement rules, essential summary of all rules
+### ℹ️ Workflow Tools (2)
+- **coding-rules-context-compression** - Context compression strategy when approaching capacity
+- **coding-rules-remote-cleanup** - Remote process cleanup specification
 
-### ⚠️ Core Principles
-- **coding-rules-no-assumption**: Zero speculation principle, no guessing or assumptions
-- **coding-rules-no-inference**: No inference principle, must verify facts
-- **coding-rules-task-identification**: Task vs question identification
-- **coding-rules-decision-approval**: Decision change approval rules
+### 🛠️ Tool Configuration (1)
+- **coding-rules-github-cli** - GitHub CLI configuration and usage guide
 
-### ℹ️ Workflow
-- **coding-rules-problem-focus**: Essential problem focus (comparison problems)
-- **coding-rules-no-report-files**: Forbidden to generate document files
-- **coding-rules-context-compression**: Context compression strategy
-- **coding-rules-remote-cleanup**: Remote process cleanup specification
+## 🎯 Skills vs Rules Distinction
 
-### 🛠️ Tool Configuration
-- **coding-rules-github-cli**: GitHub CLI configuration and usage
+### Skills (This Repository)
+- **Purpose**: Provide capabilities and methods
+- **Trigger**: User @reference or description conditions
+- **Scenario**: Complete specific tasks
+- **Characteristics**: Tool-oriented, optional, task-specific
+- **Examples**: How to analyze problems, optimize performance, use tools
 
-## 🎯 Why Flat Structure?
-
-Cursor's skill scanner uses fixed glob patterns:
-- `*/SKILL.md`
-- `*/skills/*/SKILL.md`
-- `*/*/*/skills/*/SKILL.md`
-
-**Does NOT support** nested structures like `*/skills/*/*/SKILL.md`
-
-### ❌ Wrong Nested Structure (Won't Load)
-```
-coding-rules/
-  ├── core-enforcement/SKILL.md
-  ├── no-assumption/SKILL.md
-  └── ...
-```
-
-### ✅ Correct Flat Structure (Will Auto-Load)
-```
-skills-cursor/
-  ├── coding-rules-core-enforcement/SKILL.md
-  ├── coding-rules-no-assumption/SKILL.md
-  └── ...
-```
+### Rules (Another Repository)
+- **Purpose**: Enforce constraints and standards
+- **Trigger**: `alwaysApply: true` automatically effective
+- **Scenario**: Must-follow rules like coding standards
+- **Characteristics**: Mandatory, automatic, global
+- **Repository**: https://github.com/azrael-hao/cursor-global-rules
 
 ## 📦 Installation
 
@@ -82,55 +55,51 @@ git clone https://github.com/azrael-hao/cursor-coding-rules-skills.git skills-cu
 
 ### Reference Skills in Cursor:
 ```
-@coding-rules-core-enforcement
-@coding-rules-no-assumption
-@coding-rules-decision-approval
+@coding-rules-context-compression
+@coding-rules-remote-cleanup
+@coding-rules-github-cli
 ```
 
 ### View Available Skills:
 Type `@coding-rules-` in Cursor to see all available skills
 
-## 📊 Statistics
+## 📊 Optimization Record
 
-- **Skills Count**: 10
-- **Total Lines**: 748 lines
-- **Optimization**: Compressed 15% from original rules
-- **Source**: Converted from Cursor global rules (.mdc format)
+- **Original Count**: 11 skill directories
+- **Optimized**: 4 directories (3 skills + 1 Chinese backup)
+- **Reduction**: 64%
+- **Optimization Principle**: 
+  - Removed duplicates (already exist as Rules)
+  - Kept tool-oriented, task-specific skills
+  - Separated mandatory rules to Rules repository
+
+## 🌐 GitHub Repository
+
+- **Repository**: https://github.com/azrael-hao/cursor-coding-rules-skills
+- **Branch**: main
 - **Languages**: English (default), Chinese (in coding-rules-zh/)
-
-## 🔄 Priority System
-
-```
-coding-rules-core-enforcement 🔴 Highest Priority
-  ↓
-Core Principle Skills ⚠️
-  ↓
-Workflow Skills ℹ️
-```
-
-## 📝 Maintenance Notes
-
-This Skills collection is converted from Cursor global rules, maintained in sync with rule files.
-
-- **Original Rules Location**: `~/.cursor/rules/`
-- **Skills Location**: `~/.cursor/skills-cursor/`
-- **GitHub Repository**: https://github.com/azrael-hao/cursor-coding-rules-skills
 
 ## ⚡ Quick Reference
 
-| Skill Name | Purpose | Priority |
-|-----------|---------|----------|
-| core-enforcement | Core mandatory rules (must read) | 🔴 Highest |
-| no-assumption | No speculation or guessing | ⚠️ Core |
-| no-inference | No inference, must verify | ⚠️ Core |
-| task-identification | Distinguish tasks vs questions | ⚠️ Core |
-| decision-approval | Decisions need user confirmation | ⚠️ Core |
-| problem-focus | Focus on differences for comparison | ℹ️ Workflow |
-| no-report-files | No report document generation | ℹ️ Workflow |
-| context-compression | Context compression strategy | ℹ️ Workflow |
+| Skill Name | Purpose | Type |
+|-----------|---------|------|
+| context-compression | Context management strategy | ℹ️ Workflow |
 | remote-cleanup | Remote process cleanup | ℹ️ Workflow |
-| github-cli | GitHub CLI configuration | 🛠️ Tool |
+| github-cli | GitHub CLI usage guide | 🛠️ Tool |
+
+## 📝 Relationship with Rules
+
+This Skills repository complements the Rules repository:
+- **Rules**: Mandatory constraints, auto-loaded (9 rules)
+- **Skills**: Optional tools, on-demand usage (3 skills)
+- **Separation**: Clear distinction, no duplication
+
+Related repositories:
+- Rules: https://github.com/azrael-hao/cursor-global-rules
+- Skills: https://github.com/azrael-hao/cursor-coding-rules-skills (current)
 
 ---
 
 **Made with ❤️ for Cursor AI**
+
+**Last Updated**: April 27, 2026
