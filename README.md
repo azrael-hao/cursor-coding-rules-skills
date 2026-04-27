@@ -1,53 +1,56 @@
 # Cursor Coding Rules Skills
 
-这是优化后的Cursor Skills集合，使用扁平目录结构以确保被Cursor自动加载。
+Optimized Cursor Skills collection using flat directory structure to ensure automatic loading by Cursor.
 
-## ✅ 正确的目录结构
+[中文文档](./README_zh.md)
+
+## ✅ Correct Directory Structure
 
 ```
 skills-cursor/
-├── coding-rules-core-enforcement/SKILL.md       🔴 最高优先级
-├── coding-rules-no-assumption/SKILL.md          ⚠️ 核心原则
-├── coding-rules-no-inference/SKILL.md           ⚠️ 核心原则
-├── coding-rules-task-identification/SKILL.md    ⚠️ 核心原则
-├── coding-rules-decision-approval/SKILL.md      ⚠️ 核心原则
-├── coding-rules-problem-focus/SKILL.md          ℹ️ 工作流程
-├── coding-rules-no-report-files/SKILL.md        ℹ️ 工作流程
-├── coding-rules-context-compression/SKILL.md    ℹ️ 工作流程
-├── coding-rules-remote-cleanup/SKILL.md         ℹ️ 工作流程
-└── coding-rules-github-cli/SKILL.md             ℹ️ 工具配置
+├── coding-rules-core-enforcement/SKILL.md       🔴 Highest Priority
+├── coding-rules-no-assumption/SKILL.md          ⚠️ Core Principles
+├── coding-rules-no-inference/SKILL.md           ⚠️ Core Principles
+├── coding-rules-task-identification/SKILL.md    ⚠️ Core Principles
+├── coding-rules-decision-approval/SKILL.md      ⚠️ Core Principles
+├── coding-rules-problem-focus/SKILL.md          ℹ️ Workflow
+├── coding-rules-no-report-files/SKILL.md        ℹ️ Workflow
+├── coding-rules-context-compression/SKILL.md    ℹ️ Workflow
+├── coding-rules-remote-cleanup/SKILL.md         ℹ️ Workflow
+├── coding-rules-github-cli/SKILL.md             ℹ️ Tool Config
+└── coding-rules-zh/                             📁 Chinese Versions
 ```
 
-## 📋 Skills列表
+## 📋 Skills List
 
-### 🔴 最高优先级
-- **coding-rules-core-enforcement**: 核心强制执行规则，所有规则的精华总结
+### 🔴 Highest Priority
+- **coding-rules-core-enforcement**: Core enforcement rules, essential summary of all rules
 
-### ⚠️ 核心原则
-- **coding-rules-no-assumption**: 零臆想原则，禁止猜测和假设
-- **coding-rules-no-inference**: 禁止推断原则，必须验证事实
-- **coding-rules-task-identification**: 任务与问题识别
-- **coding-rules-decision-approval**: 决策变更审批规则
+### ⚠️ Core Principles
+- **coding-rules-no-assumption**: Zero speculation principle, no guessing or assumptions
+- **coding-rules-no-inference**: No inference principle, must verify facts
+- **coding-rules-task-identification**: Task vs question identification
+- **coding-rules-decision-approval**: Decision change approval rules
 
-### ℹ️ 工作流程
-- **coding-rules-problem-focus**: 本质问题聚焦（对比型问题）
-- **coding-rules-no-report-files**: 禁止生成文档类文件
-- **coding-rules-context-compression**: 上下文压缩策略
-- **coding-rules-remote-cleanup**: 远端进程清理规范
+### ℹ️ Workflow
+- **coding-rules-problem-focus**: Essential problem focus (comparison problems)
+- **coding-rules-no-report-files**: Forbidden to generate document files
+- **coding-rules-context-compression**: Context compression strategy
+- **coding-rules-remote-cleanup**: Remote process cleanup specification
 
-### 🛠️ 工具配置
-- **coding-rules-github-cli**: GitHub CLI配置和使用
+### 🛠️ Tool Configuration
+- **coding-rules-github-cli**: GitHub CLI configuration and usage
 
-## 🎯 为什么使用扁平结构？
+## 🎯 Why Flat Structure?
 
-Cursor的技能扫描器使用固定的glob模式：
+Cursor's skill scanner uses fixed glob patterns:
 - `*/SKILL.md`
 - `*/skills/*/SKILL.md`
 - `*/*/*/skills/*/SKILL.md`
 
-**不支持**嵌套结构如 `*/skills/*/*/SKILL.md`
+**Does NOT support** nested structures like `*/skills/*/*/SKILL.md`
 
-### ❌ 错误的嵌套结构（不会被加载）
+### ❌ Wrong Nested Structure (Won't Load)
 ```
 coding-rules/
   ├── core-enforcement/SKILL.md
@@ -55,7 +58,7 @@ coding-rules/
   └── ...
 ```
 
-### ✅ 正确的扁平结构（会被自动加载）
+### ✅ Correct Flat Structure (Will Auto-Load)
 ```
 skills-cursor/
   ├── coding-rules-core-enforcement/SKILL.md
@@ -63,69 +66,70 @@ skills-cursor/
   └── ...
 ```
 
-## 📦 安装方式
+## 📦 Installation
 
-### 方式1：Clone到本地
+### Method 1: Clone Locally
 ```bash
 cd ~/.cursor/
 git clone https://github.com/azrael-hao/cursor-coding-rules-skills.git skills-cursor
 ```
 
-### 方式2：手动下载
-1. 下载本仓库
-2. 解压到 `~/.cursor/skills-cursor/`（Windows: `%USERPROFILE%\.cursor\skills-cursor\`）
+### Method 2: Manual Download
+1. Download this repository
+2. Extract to `~/.cursor/skills-cursor/` (Windows: `%USERPROFILE%\.cursor\skills-cursor\`)
 
-## 🎓 使用方式
+## 🎓 Usage
 
-### 在Cursor中引用Skills：
+### Reference Skills in Cursor:
 ```
 @coding-rules-core-enforcement
 @coding-rules-no-assumption
 @coding-rules-decision-approval
 ```
 
-### 查看可用Skills：
-在Cursor中输入 `@coding-rules-` 会自动提示所有可用的skills
+### View Available Skills:
+Type `@coding-rules-` in Cursor to see all available skills
 
-## 📊 统计信息
+## 📊 Statistics
 
-- **Skills数量**: 10个
-- **总行数**: 748行
-- **优化程度**: 从原始规则压缩15%
-- **转换来源**: Cursor全局规则（.mdc格式）
+- **Skills Count**: 10
+- **Total Lines**: 748 lines
+- **Optimization**: Compressed 15% from original rules
+- **Source**: Converted from Cursor global rules (.mdc format)
+- **Languages**: English (default), Chinese (in coding-rules-zh/)
 
-## 🔄 优先级体系
+## 🔄 Priority System
 
 ```
-coding-rules-core-enforcement 🔴 最高优先级
+coding-rules-core-enforcement 🔴 Highest Priority
   ↓
-核心原则 Skills ⚠️
+Core Principle Skills ⚠️
   ↓
-工作流程 Skills ℹ️
+Workflow Skills ℹ️
 ```
 
-## 📝 维护说明
+## 📝 Maintenance Notes
 
-本Skills集合从Cursor全局规则转换而来，保持与规则文件同步更新。
+This Skills collection is converted from Cursor global rules, maintained in sync with rule files.
 
-- **原始规则位置**: `~/.cursor/rules/`
-- **Skills位置**: `~/.cursor/skills-cursor/`
-- **GitHub仓库**: https://github.com/azrael-hao/cursor-coding-rules-skills
+- **Original Rules Location**: `~/.cursor/rules/`
+- **Skills Location**: `~/.cursor/skills-cursor/`
+- **GitHub Repository**: https://github.com/azrael-hao/cursor-coding-rules-skills
 
-## ⚡ 快速参考
+## ⚡ Quick Reference
 
-| Skill名称 | 用途 | 优先级 |
-|----------|------|--------|
-| core-enforcement | 核心强制规则（必读） | 🔴 最高 |
-| no-assumption | 禁止臆想猜测 | ⚠️ 核心 |
-| no-inference | 禁止推断，必须验证 | ⚠️ 核心 |
-| task-identification | 区分任务和问题 | ⚠️ 核心 |
-| decision-approval | 决策需用户确认 | ⚠️ 核心 |
-| problem-focus | 对比型问题聚焦差异 | ℹ️ 流程 |
-| no-report-files | 禁止生成报告文档 | ℹ️ 流程 |
-| context-compression | 上下文压缩策略 | ℹ️ 流程 |
-| remote-cleanup | 远端进程清理 | ℹ️ 流程 |
-| github-cli | GitHub CLI配置 | 🛠️ 工具 |
+| Skill Name | Purpose | Priority |
+|-----------|---------|----------|
+| core-enforcement | Core mandatory rules (must read) | 🔴 Highest |
+| no-assumption | No speculation or guessing | ⚠️ Core |
+| no-inference | No inference, must verify | ⚠️ Core |
+| task-identification | Distinguish tasks vs questions | ⚠️ Core |
+| decision-approval | Decisions need user confirmation | ⚠️ Core |
+| problem-focus | Focus on differences for comparison | ℹ️ Workflow |
+| no-report-files | No report document generation | ℹ️ Workflow |
+| context-compression | Context compression strategy | ℹ️ Workflow |
+| remote-cleanup | Remote process cleanup | ℹ️ Workflow |
+| github-cli | GitHub CLI configuration | 🛠️ Tool |
 
 ---
 

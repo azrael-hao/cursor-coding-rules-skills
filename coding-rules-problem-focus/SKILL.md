@@ -1,60 +1,60 @@
 ---
-name: problem-focus
-description: 针对对比型问题，聚焦差异分析而非已知正常部分，快速定位根因。适用于"A可以B不可以"类问题。
+name: coding-rules-problem-focus
+description: For comparison problems, focus on difference analysis rather than known normal parts, quickly locate root cause. Applies to "A works, B doesn't" type problems.
 ---
 
-# 本质问题聚焦
+# Essential Problem Focus
 
-## 核心理念
+## Core Concept
 
-**直击差异，不纠缠已知。聚焦问题根因，不浪费时间分析已正常工作的部分。**
+**Go straight to differences, don't dwell on the known. Focus on problem root cause, don't waste time analyzing already working parts.**
 
-## 适用条件判断
+## Applicability Judgment
 
-### ✅ 对比型问题（应用本原则）
-- "之前可以，现在不行" / "A环境正常，B环境失败"
-- "旧版本正常，新版本出错" / "数据集A成功，数据集B失败"
-- 描述中包含"但是"、"而"、"可是"等转折词
-- 提供了正常和异常案例的对比
+### ✅ Comparison Problems (Apply This Principle)
+- "Previously worked, now doesn't" / "A environment normal, B environment fails"
+- "Old version normal, new version errors" / "Dataset A succeeds, Dataset B fails"
+- Description contains transition words like "but", "however", "yet"
+- Provided normal and abnormal case comparison
 
-### ❌ 非对比型问题（不应用本原则）
-- 单纯的错误报告："运行时报错..."（无对照组）
-- 新功能开发："实现XX功能"（无旧版本）
-- 代码理解："这段代码什么意思？"（非问题诊断）
+### ❌ Non-Comparison Problems (Don't Apply This Principle)
+- Simple error reports: "Runtime error..." (no control group)
+- New feature development: "Implement XX feature" (no old version)
+- Code understanding: "What does this code mean?" (not problem diagnosis)
 
-### 判断流程
+### Judgment Process
 ```
-收到用户问题 → 识别对比词（之前/现在、旧/新、A/B）
-├─ 是 → 对比型问题 → 应用差异对比分析
-└─ 否 → 非对比型问题 → 常规问题诊断
+Received user question → Identify comparison words (before/now, old/new, A/B)
+├─ Yes → Comparison problem → Apply difference comparison analysis
+└─ No → Non-comparison problem → Regular problem diagnosis
 ```
 
-## 对比型问题的分析流程
+## Analysis Process for Comparison Problems
 
-1. **快速确认已知事实**（不深入分析）：什么是正常的？
-2. **立即聚焦差异点**（核心关注）：新旧有什么不同？
-3. **分析差异如何导致问题**（定位根因）：哪个差异导致问题？
-4. **直接修复根因**（精准解决）：针对根因修复
+1. **Quickly confirm known facts** (don't deep analyze): What's normal?
+2. **Immediately focus on differences** (core attention): What's different between new and old?
+3. **Analyze how differences cause problem** (locate root cause): Which difference causes the problem?
+4. **Directly fix root cause** (precise solution): Fix targeting root cause
 
-## 对比维度
+## Comparison Dimensions
 
-- **配置差异**：配置文件、环境变量、参数设置
-- **版本差异**：依赖版本、工具版本、库版本
-- **环境差异**：运行环境、网络环境、文件系统
-- **代码差异**：代码变更、逻辑修改、API调用
-- **数据差异**：输入数据、数据格式、数据状态
+- **Configuration differences**: Config files, environment variables, parameter settings
+- **Version differences**: Dependency versions, tool versions, library versions
+- **Environment differences**: Runtime environment, network environment, file system
+- **Code differences**: Code changes, logic modifications, API calls
+- **Data differences**: Input data, data formats, data states
 
-## 优先级排序
-1. 🔴 高优先级：直接相关的配置或代码变更
-2. 🟡 中优先级：间接影响的环境或依赖变化
-3. 🟢 低优先级：不太可能影响的细微差异
+## Priority Sorting
+1. 🔴 High priority: Directly related configuration or code changes
+2. 🟡 Medium priority: Indirectly affecting environment or dependency changes
+3. 🟢 Low priority: Unlikely to affect minor differences
 
-## 禁止的低效行为
+## Forbidden Inefficient Behaviors
 
-- 🚫 解释"为什么旧的能工作"（已知事实不需要解释）
-- 🚫 讲解整个系统工作原理（通用知识不是重点）
-- 🚫 列举所有理论可能原因（没有针对性）
-- 🚫 忽略用户提供的对照组（浪费宝贵线索）
-- 🚫 强行寻找不存在的对比（用户未提供对照组时）
+- 🚫 Explain "why old one works" (known facts don't need explanation)
+- 🚫 Explain entire system working principles (general knowledge not the point)
+- 🚫 List all theoretical possible causes (no targeting)
+- 🚫 Ignore user-provided control group (waste valuable clues)
+- 🚫 Force finding non-existent comparisons (when user didn't provide control group)
 
-**记住：先判断场景，对比型问题聚焦差异，非对比型问题直接诊断。**
+**Remember: First judge scenario, comparison problems focus on differences, non-comparison problems direct diagnosis.**

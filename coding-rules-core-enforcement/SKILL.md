@@ -1,103 +1,103 @@
 ---
-name: core-enforcement
-description: 核心强制执行规则-最高优先级。所有操作必须遵守，违反即为严重错误。必须在thinking中体现需要遵守的规则。
+name: coding-rules-core-enforcement
+description: Core enforcement rules - Highest priority. All operations must comply, violations are serious errors. Must reflect these rules in thinking.
 ---
 
-# 核心强制执行规则（最高优先级）
+# Core Enforcement Rules (Highest Priority)
 
-**本规则优先级高于所有其他规则，是精华总结。每次操作前必须检查。**
+**This rule has priority over all other rules and is the essential summary. Must check before every operation.**
 
-## 绝对禁止（NEVER）
+## Absolute Prohibitions (NEVER)
 
-### 臆想和猜测
-- ❌ NEVER 假设字段/方法/文件存在 → MUST 实际验证
-- ❌ NEVER 猜测错误原因 → MUST 获取完整信息
-- ❌ NEVER 使用"应该"、"可能"、"大概" → MUST 基于证据
+### Speculation and Guessing
+- ❌ NEVER assume fields/methods/files exist → MUST actually verify
+- ❌ NEVER guess error causes → MUST obtain complete information
+- ❌ NEVER use "should", "might", "probably" → MUST base on evidence
 
-### 文档生成
-- ❌ NEVER 生成`*报告.md`、`*清单.md`、`*说明.md`
-- ✅ MUST 在回复中总结（可详细，但不生成文件）
+### Document Generation
+- ❌ NEVER generate `*Report.md`, `*Checklist.md`, `*Guide.md`
+- ✅ MUST summarize in response (can be detailed, but don't create files)
 
-### 选项展示
-- ❌ NEVER 在聊天中列"A、B、C、D"选项
-- ✅ MUST 使用AskQuestion工具（需要用户选择时）
+### Option Display
+- ❌ NEVER list "A, B, C, D" options in chat
+- ✅ MUST use AskQuestion tool (when user choice needed)
 
-### 验证
-- ❌ NEVER 只读前100行 → MUST 完整读取
-- ❌ NEVER 不确定时直接执行 → MUST 先询问
+### Verification
+- ❌ NEVER read only first 100 lines → MUST read completely
+- ❌ NEVER execute when uncertain → MUST ask first
 
-## 强制执行（MUST）
+## Mandatory Actions (MUST)
 
-### 1. 执行前检查（任何操作前）
-- [ ] 问题根因已100%确定
-- [ ] 解决方案已充分验证
-- [ ] 影响范围已全面评估
-- [ ] 用户规则已完全遵守
+### 1. Pre-Execution Check (Before Any Operation)
+- [ ] Root cause 100% determined
+- [ ] Solution fully verified
+- [ ] Impact scope comprehensively assessed
+- [ ] User rules completely followed
 
-### 2. 任务vs问题识别
-- **执行类**（创建、修改、删除、优化）→ MUST 使用工具执行
-- **回答类**（是什么、为什么、如何）→ MUST 直接回答
+### 2. Task vs Question Identification
+- **Execution tasks** (create, modify, delete, optimize) → MUST use tools
+- **Answer questions** (what, why, how) → MUST answer directly
 
-### 3. 决策和选择
-**需要用户选择时：**
-- ✅ MUST 调用AskQuestion工具，❌ NEVER 聊天列选项
+### 3. Decisions and Choices
+**When user choice needed:**
+- ✅ MUST call AskQuestion tool, ❌ NEVER list options in chat
 
-**何时询问：**
-- 多种方案 / 高风险 / 业务决策 → MUST 询问
-- 任务自然延续（验证→修复）→ MUST 直接执行
+**When to ask:**
+- Multiple options / High risk / Business decisions → MUST ask
+- Natural task continuation (verify→fix) → MUST execute directly
 
-### 4. 对比型问题
-**"A可以B不可以"：**
-- ✅ MUST 聚焦差异，❌ NEVER 解释"为什么旧的能工作"
+### 4. Comparison Problems
+**"A works, B doesn't":**
+- ✅ MUST focus on differences, ❌ NEVER explain "why old one works"
 
-### 5. 信息验证
-- 🟢 可信：用户提供、实际验证、官方文档
-- 🟡 需验证：模式推断 → MUST 先验证
-- 🔴 禁止：纯假设、臆想
+### 5. Information Verification
+- 🟢 Trusted: User provided, actually verified, official docs
+- 🟡 Needs verification: Pattern inference → MUST verify first
+- 🔴 Forbidden: Pure assumptions, speculation
 
-## 每次操作前自检
+## Self-Check Before Each Operation
 
-1. [ ] 我是否基于未经验证的假设？
-2. [ ] 这是执行类任务还是回答类问题？
-3. [ ] 需要选择时是否用了AskQuestion工具？
-4. [ ] 我是否要生成报告/清单文件？（禁止）
-5. [ ] 对比型问题是否聚焦差异？
-6. [ ] 我是否已验证所有信息？
-7. [ ] 我是否100%确定？
+1. [ ] Am I based on unverified assumptions?
+2. [ ] Is this an execution task or answer question?
+3. [ ] Did I use AskQuestion tool when choice needed?
+4. [ ] Am I generating report/checklist files? (Forbidden)
+5. [ ] For comparison problems, am I focusing on differences?
+6. [ ] Have I verified all information?
+7. [ ] Am I 100% certain?
 
-**任何"否"或"不确定"→ STOP重新检查**
+**Any "no" or "uncertain" → STOP and recheck**
 
-## 违规示例
+## Violation Examples
 
-### ❌ 错误1：臆想
+### ❌ Error 1: Speculation
 ```
-错："表应该有user_id字段" → 正：DESCRIBE确认
-```
-
-### ❌ 错误2：聊天列选项
-```
-错："A. 方案1 B. 方案2" → 正：AskQuestion({...})
+Wrong: "Table should have user_id field" → Right: DESCRIBE to confirm
 ```
 
-### ❌ 错误3：生成报告
+### ❌ Error 2: Listing Options in Chat
 ```
-错：创建"报告.md" → 正：在回复中总结
-```
-
-### ❌ 错误4：分析正常部分
-```
-用户："旧版正常，新版报错"
-错：解释旧版为何正常 → 正：对比差异
+Wrong: "A. Option 1 B. Option 2" → Right: AskQuestion({...})
 ```
 
-## 规则优先级
+### ❌ Error 3: Generate Report
+```
+Wrong: Create "Report.md" → Right: Summarize in response
+```
+
+### ❌ Error 4: Analyze Normal Part
+```
+User: "Old version works, new version fails"
+Wrong: Explain why old works → Right: Compare differences
+```
+
+## Rule Priority
 
 ```
-core-enforcement (本规则) 🔴 最高
+coding-rules-core-enforcement (this rule) 🔴 Highest
   ↓
-核心原则规则 ⚠️
+Core principle rules ⚠️
   ↓
-其他细节规则 ℹ️
+Other detail rules ℹ️
 ```
 
-**记住：本规则是核心精华。每次操作前检查。违反即严重错误。必须在thinking中体现需要遵守的规则。**
+**Remember: This is the core essence. Check before every operation. Violations are serious errors. Must reflect these rules in thinking.**

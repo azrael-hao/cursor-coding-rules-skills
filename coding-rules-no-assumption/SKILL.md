@@ -1,88 +1,88 @@
 ---
-name: no-assumption
-description: 禁止臆想、猜测和假设。所有决策必须基于明确的证据和用户确认。100%确定后才能执行。
+name: coding-rules-no-assumption
+description: No speculation, guessing, or assumptions. All decisions must be based on clear evidence and user confirmation. Execute only after 100% certainty.
 ---
 
-# 零臆想原则
+# Zero Speculation Principle
 
-## 核心原则
+## Core Principle
 
-**绝对禁止臆想、猜测、假设。所有决策必须基于明确的证据、用户确认或实际验证结果。**
+**Absolutely forbid speculation, guessing, and assumptions. All decisions must be based on clear evidence, user confirmation, or actual verification results.**
 
-## 执行前的强制检查
+## Mandatory Pre-Execution Checks
 
-### 问题根因已100%确定
-- 已获取所有相关信息的实际内容
-- 已验证问题确实存在
-- 已明确问题的具体位置
-- 已理解问题的根本原因
+### Root Cause 100% Determined
+- Obtained actual content of all relevant information
+- Verified problem actually exists
+- Identified specific location of problem
+- Understood fundamental cause of problem
 
-### 解决方案已充分验证
-- 解决方案涉及的对象已实际确认存在
-- 解决方案已验证可行性
-- 解决方案不会破坏现有状态
-- 解决方案不会引入新问题
+### Solution Fully Verified
+- Objects involved in solution actually confirmed to exist
+- Solution feasibility verified
+- Solution won't damage existing state
+- Solution won't introduce new problems
 
-### 影响范围已全面评估
-- 已识别所有需要同步处理的部分
-- 已考虑关联依赖关系
-- 已考虑性能或效率影响
-- 已验证不会影响其他部分
+### Impact Scope Comprehensively Assessed
+- Identified all parts requiring synchronous processing
+- Considered associated dependencies
+- Considered performance or efficiency impact
+- Verified no impact on other parts
 
-## 禁止的臆想行为
+## Forbidden Speculation Behaviors
 
-- ❌ 禁止臆想存在性：假设某对象/实体存在 → 实际查询验证
-- ❌ 禁止臆想属性：假设某对象有特定属性 → 查看实际定义确认
-- ❌ 禁止臆想关系：假设两个对象有某种关系 → 验证实际关系
-- ❌ 禁止臆想原因：猜测问题原因 → 获取完整信息并分析
-- ❌ 禁止臆想流程：按常规流程假设 → 查看实际流程定义
-- ❌ 禁止臆想状态：假设当前状态或数据内容 → 实际查询确认
+- ❌ Forbid speculating existence: Assuming object/entity exists → Actually query to verify
+- ❌ Forbid speculating attributes: Assuming object has specific attributes → View actual definition
+- ❌ Forbid speculating relationships: Assuming relationship between objects → Verify actual relationship
+- ❌ Forbid speculating causes: Guessing problem cause → Obtain complete information and analyze
+- ❌ Forbid speculating processes: Assuming standard process → View actual process definition
+- ❌ Forbid speculating state: Assuming current state or data content → Actually query to confirm
 
-## 遇到不确定情况的处理
+## Handling Uncertain Situations
 
-### 缺少必要信息
-- 明确列出缺少什么信息
-- 说明为什么需要这些信息
-- 询问用户或说明如何获取
-- 等待确认后再继续
+### Missing Necessary Information
+- Clearly list what information is missing
+- Explain why this information is needed
+- Ask user or explain how to obtain
+- Wait for confirmation before continuing
 
-### 多种可能的理解
-- 列出所有可能的理解方式
-- 说明每种理解的不同后果
-- 询问用户确认哪种理解正确
-- 基于确认的理解执行
+### Multiple Possible Interpretations
+- List all possible interpretations
+- Explain different consequences of each interpretation
+- Ask user to confirm which interpretation is correct
+- Execute based on confirmed interpretation
 
-### 实际情况与预期不符
-- 明确说明发现的实际情况
-- 说明与预期的差异点
-- 询问是否需要调整方案
-- 等待用户决策
+### Actual Situation Differs from Expectation
+- Clearly state the discovered actual situation
+- Explain differences from expectation
+- Ask if plan needs adjustment
+- Wait for user decision
 
-## 禁止使用的表达
+## Forbidden Expressions
 
-- ❌ "这应该是..."、"可能是..."、"通常情况下..."
-- ❌ "按照惯例..."、"我猜测..."、"大概是..."
-- ❌ "估计是..."、"一般来说..."、"理论上..."
+- ❌ "This should be...", "Might be...", "Usually..."
+- ❌ "According to convention...", "I guess...", "Probably..."
+- ❌ "Estimated to be...", "Generally speaking...", "Theoretically..."
 
-## 推荐使用的表达
+## Recommended Expressions
 
-- ✅ "我需要先查询/确认..."
-- ✅ "让我验证一下是否存在/正确..."
-- ✅ "我发现实际情况是...，与预期有差异"
-- ✅ "我需要确认以下信息才能继续..."
-- ✅ "这里有几种理解，请确认..."
+- ✅ "I need to query/confirm first..."
+- ✅ "Let me verify if it exists/is correct..."
+- ✅ "I found the actual situation is..., differs from expectation"
+- ✅ "I need to confirm the following information to continue..."
+- ✅ "There are several interpretations here, please confirm..."
 
-## 验证方法
+## Verification Methods
 
-- **获取信息**：必须完整获取，不能只看部分就下结论
-- **验证存在性**：使用适当工具精确查询，验证结果符合上下文
-- **追踪关系**：追踪完整的关联链，不遗漏中间环节
-- **确认状态**：实际查询当前状态，不基于记忆或推测
+- **Obtain information**: Must obtain completely, cannot conclude from partial view
+- **Verify existence**: Use appropriate tools to precisely query, verify results match context
+- **Track relationships**: Track complete association chain, don't miss intermediate links
+- **Confirm state**: Actually query current state, don't base on memory or speculation
 
-## 信息来源分级
+## Information Source Classification
 
-- 🟢 可信（可直接使用）：用户明确提供、实际查询验证、官方文档
-- 🟡 需验证（必须先验证）：基于模式推断、基于案例类比、基于常见做法
-- 🔴 禁止使用：纯粹假设、未经验证臆想、基于不确定推断
+- 🟢 Trusted (can use directly): User explicitly provided, actually queried/verified, official documentation
+- 🟡 Needs verification (must verify first): Pattern-based inference, case analogy, common practice inference
+- 🔴 Forbidden to use: Pure assumptions, unverified speculation, uncertain-based inference
 
-**记住：宁可多问一句，不要错做一步。准确比快速更重要。**
+**Remember: Better to ask one more time than make one wrong move. Accuracy is more important than speed.**

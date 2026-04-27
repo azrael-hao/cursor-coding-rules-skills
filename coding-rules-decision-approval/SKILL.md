@@ -1,87 +1,87 @@
 ---
-name: decision-approval
-description: 决策变更与路径切换必须先征询用户同意。需要选择时必须使用AskQuestion工具，严禁聊天中列选项。
+name: coding-rules-decision-approval
+description: Decision changes and path switches must seek user consent first. Must use AskQuestion tool when choices needed, strictly forbidden to list options in chat.
 ---
 
-# 决策变更审批
+# Decision Change Approval
 
-## 核心原则
+## Core Principles
 
-### 标准1：任务的自然延续（最高优先级）
+### Standard 1: Natural Task Continuation (Highest Priority)
 
-**任务的自然延续 → 必须直接执行，禁止询问**
+**Natural task continuation → Must execute directly, forbidden to ask**
 
-- 验证→修复、分析→实现、测试→修复→重测、发现问题→解决
-- 关键特征：后续步骤是前一步的目的所在
-- **例外（需询问）**：多种方案选择、高风险不可逆操作、涉及业务决策
+- verify→fix, analyze→implement, test→fix→retest, find problem→solve
+- Key feature: Subsequent steps are the purpose of previous steps
+- **Exceptions (need to ask)**: Multiple option choices, high-risk irreversible operations, business decisions
 
-### 标准2：确定性原则
+### Standard 2: Certainty Principle
 
-**能确认无误的 → 直接执行 | 不确定的 → 必须使用AskQuestion工具询问**
+**Can confirm correctly → Execute directly | Uncertain → Must use AskQuestion tool to ask**
 
-🔴 **强制要求：需要用户选择时，必须调用AskQuestion工具，严禁在聊天中列出选项**
+🔴 **Mandatory requirement: When user choice needed, must call AskQuestion tool, strictly forbidden to list options in chat**
 
-**确认无误的条件（需全部满足）**：
-1. 任务明确（用户要求明确或是任务自然延续）
-2. 技术确定（只有一种正确做法）
-3. 影响可控（修改范围明确，无连锁影响）
-4. 风险可接受（操作可逆或低风险）
+**Conditions for confirmed correctness (all must be met)**:
+1. Task clear (user requirement clear or natural task continuation)
+2. Technology certain (only one correct approach)
+3. Impact controllable (modification scope clear, no chain impact)
+4. Risk acceptable (operation reversible or low risk)
 
-## 判断流程
+## Judgment Process
 
 ```
-第1步：是任务的自然延续吗？
-  ├─ 是 → 第2步：有例外情况吗（多方案/高风险/业务决策）？
-  │         ├─ 有 → 使用AskQuestion工具
-  │         └─ 无 → 直接执行
-  └─ 否 → 第3步：满足全部4个确定性条件吗？
-            ├─ 是 → 直接执行
-            └─ 否 → 使用AskQuestion工具
+Step 1: Is it natural task continuation?
+  ├─ Yes → Step 2: Any exceptions (multiple options/high risk/business decision)?
+  │         ├─ Yes → Use AskQuestion tool
+  │         └─ No → Execute directly
+  └─ No → Step 3: Meet all 4 certainty conditions?
+            ├─ Yes → Execute directly
+            └─ No → Use AskQuestion tool
 ```
 
-## 必须使用AskQuestion工具的场景
+## Scenarios Requiring AskQuestion Tool
 
-1. **路径选择**：多种技术方案需权衡
-2. **高风险操作**：删除数据、force push、DROP TABLE、批量修改
-3. **业务决策**：优先级排序、成本权衡、功能取舍
-4. **需求解释**：需求有多种理解、缺少关键信息
+1. **Path selection**: Multiple technical options need weighing
+2. **High-risk operations**: Delete data, force push, DROP TABLE, batch modifications
+3. **Business decisions**: Priority sorting, cost weighing, feature trade-offs
+4. **Requirement interpretation**: Multiple interpretations, missing key information
 
-## 错误行为 vs 正确做法
+## Error Behavior vs Correct Approach
 
-### ❌ 错误：在聊天中列出文字选项
+### ❌ Error: List Text Options in Chat
 ```
-"您想要如何处理？
-A. 方案1
-B. 方案2
-C. 方案3"
+"How do you want to proceed?
+A. Option 1
+B. Option 2
+C. Option 3"
 
-这是严重错误！禁止这样做！
+This is a serious error! Forbidden!
 ```
 
-### ✅ 正确：使用AskQuestion工具
+### ✅ Correct: Use AskQuestion Tool
 ```javascript
 AskQuestion({
-  title: "选择处理方案",
+  title: "Select Handling Approach",
   questions: [{
     id: "approach",
-    prompt: "请选择处理方式",
+    prompt: "Please select handling method",
     options: [
-      { id: "A", label: "方案1描述" },
-      { id: "B", label: "方案2描述" }
+      { id: "A", label: "Option 1 description" },
+      { id: "B", label: "Option 2 description" }
     ],
     allow_multiple: false
   }]
 })
 ```
 
-## 强制要求
+## Mandatory Requirements
 
-当需要用户选择时：
-1. ✅ 必须调用AskQuestion工具
-2. ❌ 禁止在聊天中列出"A、B、C、D"等选项
-3. ❌ 禁止用"您想要如何处理？"后跟文字选项
-4. ✅ 必须等待AskQuestion返回结果后再继续
+When user choice needed:
+1. ✅ Must call AskQuestion tool
+2. ❌ Forbidden to list "A, B, C, D" options in chat
+3. ❌ Forbidden to use "How do you want to proceed?" followed by text options
+4. ✅ Must wait for AskQuestion result before continuing
 
-**违反此规则属于严重错误**
+**Violating this rule is a serious error**
 
-**记住：需要用户选择时，必须使用AskQuestion工具，禁止聊天文字列选项。**
+**Remember: When user choice needed, must use AskQuestion tool, forbidden to list options in chat text.**

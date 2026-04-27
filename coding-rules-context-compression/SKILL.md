@@ -1,50 +1,50 @@
 ---
-name: context-compression
-description: 当对话上下文接近容量上限时，自动进行上下文压缩以保持会话连续性。
+name: coding-rules-context-compression
+description: When dialogue context approaches capacity limit, automatically perform context compression to maintain session continuity.
 ---
 
-# 上下文压缩
+# Context Compression
 
-## 触发条件
+## Trigger Conditions
 
-当感知到以下任一信号时，表明上下文即将耗尽，必须立即执行压缩：
+When sensing any of the following signals, context is about to be exhausted, must immediately compress:
 
-1. 对话轮次已超过 20 轮且包含大量工具调用结果
-2. 已读取或生成了大段代码/数据（累计超过 2000 行）
-3. 子任务（Task/subagent）执行时间超过 5 分钟仍未完成
-4. 感觉到回复被截断或无法完整生成
+1. Dialogue rounds exceeded 20 and contain large number of tool call results
+2. Read or generated large code/data segments (cumulative exceeds 2000 lines)
+3. Subtask (Task/subagent) execution time exceeds 5 minutes still not complete
+4. Feel responses being truncated or unable to generate completely
 
-## 压缩策略
+## Compression Strategy
 
-### 1. 主动告知用户
-在回复开头明确说明：
-> "上下文已接近容量上限，正在进行压缩以保持会话连续性。"
+### 1. Proactively Inform User
+Clearly state at beginning of response:
+> "Context approaching capacity limit, compressing to maintain session continuity."
 
-### 2. 生成结构化摘要
-将当前会话的关键信息压缩为以下结构：
-- **当前任务**：一句话描述正在做什么
-- **已完成**：已完成的步骤列表
-- **待完成**：尚未完成的步骤列表
-- **关键文件**：涉及的文件路径及其作用
-- **关键决策**：已做出的技术决策和原因
-- **待确认**：需要用户确认的问题
+### 2. Generate Structured Summary
+Compress current session key information into following structure:
+- **Current Task**: One sentence describing what's being done
+- **Completed**: List of completed steps
+- **To Complete**: List of uncompleted steps
+- **Key Files**: File paths involved and their roles
+- **Key Decisions**: Technical decisions made and reasons
+- **To Confirm**: Issues requiring user confirmation
 
-### 3. 避免重复读取
-压缩后不要重新读取已经处理过的文件内容，仅引用文件路径。对于大型数据结果，只保留统计摘要而非原始数据。
+### 3. Avoid Repeated Reading
+After compression, don't re-read already processed file content, only reference file paths. For large data results, only keep statistical summary not raw data.
 
-### 4. 拆分大任务
-如果任务过大无法在单次会话中完成：
-- 将剩余工作拆分为可独立执行的子步骤
-- 用 TODO 列表记录进度
-- 优先使用脚本自动化（Python/Shell）代替逐行手动操作
-- 避免使用 subagent 处理需要生成大量文本的任务
+### 4. Split Large Tasks
+If task too large to complete in single session:
+- Split remaining work into independently executable sub-steps
+- Use TODO list to record progress
+- Prioritize script automation (Python/Shell) instead of line-by-line manual operations
+- Avoid using subagent to process tasks requiring large text generation
 
-## 预防措施
+## Preventive Measures
 
-在整个会话过程中遵循以下原则以减缓上下文消耗：
+Follow these principles throughout session to slow context consumption:
 
-- 读取文件时优先使用 offset/limit 参数，避免一次读取超过 200 行
-- SSH 命令输出过长时使用 `head`/`tail` 截断
-- 生成大型文档时使用 Python 脚本而非逐行手写
-- 工具调用结果超过 100 行时，提取关键信息后不再引用原始输出
-- 每完成一个里程碑就更新 TODO 列表，确保进度可追溯
+- When reading files, prioritize using offset/limit parameters, avoid reading over 200 lines at once
+- When SSH command output too long, use `head`/`tail` to truncate
+- When generating large documents, use Python scripts instead of writing line by line
+- When tool call results exceed 100 lines, extract key information and don't reference original output again
+- Update TODO list after completing each milestone to ensure progress traceable

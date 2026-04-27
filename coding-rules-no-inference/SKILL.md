@@ -1,68 +1,68 @@
 ---
-name: no-inference
-description: 禁止通过推断确定事实，必须通过实际验证获取。
+name: coding-rules-no-inference
+description: Forbidden to determine facts through inference, must obtain through actual verification.
 ---
 
-# 禁止推断 - 强制验证
+# No Inference - Mandatory Verification
 
-## 核心原则
+## Core Principle
 
-**禁止通过推断、猜测、假设来确定任何可以验证的事实。所有关键信息必须通过实际查询、测试或检查来确认。**
+**Forbidden to determine any verifiable facts through inference, guessing, or assumptions. All key information must be confirmed through actual query, testing, or inspection.**
 
-**零容忍原则**：对于可验证的事实，0%的推断可接受，100%必须验证。
+**Zero tolerance principle**: For verifiable facts, 0% inference acceptable, 100% must verify.
 
-## 必须验证的场景
+## Scenarios Requiring Verification
 
-### 1. 数据库结构信息
-❌ 禁止推断：基于命名规范推断字段名、基于业务逻辑推断表关联  
-✅ 必须验证：`DESCRIBE table_name`、`SHOW COLUMNS`
+### 1. Database Structure Information
+❌ Forbidden to infer: Infer field names based on naming conventions, infer table associations based on business logic  
+✅ Must verify: `DESCRIBE table_name`, `SHOW COLUMNS`
 
-### 2. API接口和函数签名
-❌ 禁止推断：基于函数名推断参数  
-✅ 必须验证：`help(function)`、`inspect.signature()`
+### 2. API Interfaces and Function Signatures
+❌ Forbidden to infer: Infer parameters based on function names  
+✅ Must verify: `help(function)`, `inspect.signature()`
 
-### 3. 配置文件和环境变量
-❌ 禁止推断：假设配置项存在  
-✅ 必须验证：读取实际配置文件
+### 3. Config Files and Environment Variables
+❌ Forbidden to infer: Assume config items exist  
+✅ Must verify: Read actual config files
 
-### 4. 文件路径和资源位置
-❌ 禁止推断：假设文件存在某位置  
-✅ 必须验证：`ls`、`find`、`glob`工具
+### 4. File Paths and Resource Locations
+❌ Forbidden to infer: Assume files exist at certain locations  
+✅ Must verify: `ls`, `find`, `glob` tools
 
-### 5. 代码逻辑和业务流程
-❌ 禁止推断：假设代码按标准流程执行  
-✅ 必须验证：读取实际代码、追踪调用链
+### 5. Code Logic and Business Processes
+❌ Forbidden to infer: Assume code executes in standard process  
+✅ Must verify: Read actual code, trace call chain
 
-### 6. 依赖版本和兼容性
-❌ 禁止推断：假设版本兼容  
-✅ 必须验证：检查`package.json`、`requirements.txt`
+### 6. Dependency Versions and Compatibility
+❌ Forbidden to infer: Assume version compatibility  
+✅ Must verify: Check `package.json`, `requirements.txt`
 
-## 验证方法选择
+## Verification Method Selection
 
-| 场景 | 验证方法 |
-|------|----------|
-| 数据库结构 | SQL查询（DESCRIBE/SHOW） |
-| 代码中的方法/类/字段 | Grep搜索 + Read读取 |
-| 文件是否存在 | Glob查找或Shell ls |
-| API行为 | 查看文档 + 实际测试 |
-| 配置项 | Read读取配置文件 |
-| 表之间关联关系 | SQL查询测试JOIN |
-| 函数调用链 | Grep搜索 + 逐层Read |
-| 环境变量 | Shell echo $VAR |
+| Scenario | Verification Method |
+|----------|---------------------|
+| Database structure | SQL query (DESCRIBE/SHOW) |
+| Methods/classes/fields in code | Grep search + Read |
+| File existence | Glob search or Shell ls |
+| API behavior | View docs + actual test |
+| Config items | Read config file |
+| Table associations | SQL query test JOIN |
+| Function call chain | Grep search + layer-by-layer Read |
+| Environment variables | Shell echo $VAR |
 
-## 强制验证流程
+## Mandatory Verification Process
 
-1. 发现需要信息 → 不要推断
-2. 选择验证方法 → 使用上表方法
-3. 执行验证 → 获取实际结果
-4. 基于验证结果决策 → 而非推断
+1. Find needed information → Don't infer
+2. Select verification method → Use methods from table above
+3. Execute verification → Obtain actual results
+4. Base decisions on verification results → Not inference
 
-## 自检清单
+## Self-Check List
 
-- [ ] 我使用的每个字段名都已验证存在？
-- [ ] 我使用的每个方法都已确认签名？
-- [ ] 我假设的关联关系都已测试验证？
-- [ ] 我引用的文件路径都已确认存在？
-- [ ] 我依赖的配置项都已读取确认？
+- [ ] Has every field name I use been verified to exist?
+- [ ] Has every method I use been confirmed for signature?
+- [ ] Have the associations I assume been tested and verified?
+- [ ] Have the file paths I reference been confirmed to exist?
+- [ ] Have the config items I depend on been read and confirmed?
 
-**记住：可以验证的，就必须验证。没有例外。**
+**Remember: What can be verified must be verified. No exceptions.**

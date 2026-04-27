@@ -1,61 +1,61 @@
 ---
-name: remote-cleanup
-description: 终止任务时必须同时终止远端源头进程，避免服务器资源耗尽。
+name: coding-rules-remote-cleanup
+description: When terminating tasks, must simultaneously terminate remote source processes to avoid server resource exhaustion.
 ---
 
-# 远端进程清理
+# Remote Process Cleanup
 
-## 核心原则
+## Core Principle
 
-**当终止本地进程（SSH客户端、数据库客户端等）时，必须同时终止远端服务器上由该连接触发的源头进程。仅终止本地连接会导致服务器资源耗尽甚至宕机。**
+**When terminating local processes (SSH client, database client, etc.), must simultaneously terminate source processes on remote server triggered by that connection. Only terminating local connection will cause server resource exhaustion or even crash.**
 
-## 触发场景
+## Trigger Scenarios
 
-### 1. SSH 连接中断
-- `kill` 本地 SSH 进程前，必须先终止远端正在执行的命令
-- 如果通过 `docker exec` 执行数据库查询，需先在数据库层面 `KILL` 对应查询
+### 1. SSH Connection Interruption
+- Before `kill` local SSH process, must first terminate remote executing commands through that connection or new connection
+- If SSH executed database query through `docker exec`, need to first `KILL` at database level
 
-### 2. 数据库查询终止
-- 取消本地数据库客户端前，必须先在远端执行 `KILL <process_id>`
-- 对于通过 SSH 隧道执行的查询，需通过新连接登录数据库终止残留查询
+### 2. Database Query Termination
+- Before canceling local database client, must first execute `KILL <process_id>` on remote
+- For queries executed through SSH tunnel, need to login database through new connection to terminate residual queries
 
-### 3. 后台任务取消
-- 取消本地发起的远端后台任务时，必须确认远端进程已终止
-- 不能仅依赖本地 `kill` 来终止远端进程
+### 3. Background Task Cancellation
+- When canceling remote background task initiated locally, must confirm remote process terminated
+- Cannot rely solely on local `kill` to terminate remote process
 
-## 标准清理流程
+## Standard Cleanup Process
 
-1. **识别远端进程**：通过 `SHOW PROCESSLIST` 或 `ps aux` 确认远端进程 ID
-2. **终止远端进程**：通过新连接执行 `KILL` 命令
-3. **验证清理结果**：再次查询确认远端进程已消失
-4. **终止本地进程**：确认远端已清理后，再终止本地连接
+1. **Identify Remote Process**: Through `SHOW PROCESSLIST` or `ps aux` confirm remote process ID
+2. **Terminate Remote Process**: Execute `KILL` command through new connection
+3. **Verify Cleanup Result**: Query again to confirm remote process disappeared
+4. **Terminate Local Process**: After confirming remote cleaned, then terminate local connection
 
-## MySQL 专用清理
+## MySQL-Specific Cleanup
 
 ```sql
--- 1. 查看当前活跃查询
+-- 1. View current active queries
 SHOW PROCESSLIST;
--- 或更精确：
+-- Or more precise:
 SELECT id, time, state, LEFT(info, 100) 
 FROM information_schema.processlist
 WHERE command != 'Sleep' AND time > 30;
 
--- 2. 终止慢查询
+-- 2. Terminate slow query
 KILL <process_id>;
 
--- 3. 验证
+-- 3. Verify
 SHOW PROCESSLIST;
 ```
 
-## 禁止行为
+## Forbidden Behaviors
 
-- ❌ 禁止仅 `kill` 本地进程而不清理远端
-- ❌ 禁止假设"断开连接后远端会自动终止"
-- ❌ 禁止在未确认远端清理完成时发起新查询
+- ❌ Forbidden to only `kill` local process without cleaning remote
+- ❌ Forbidden to assume "remote will auto-terminate after disconnect"
+- ❌ Forbidden to initiate new query without confirming remote cleanup complete
 
-## 预防措施
+## Preventive Measures
 
-- 对大表查询设置超时：`SET SESSION max_execution_time = 60000;`
-- 避免在远端执行全表扫描或无索引 JOIN
-- 对可能耗时的查询，先用 `EXPLAIN` 评估
-- 优先使用 `LIMIT` + 采样替代全量扫描
+- Set timeout for large table queries: `SET SESSION max_execution_time = 60000;`
+- Avoid executing full table scans or no-index JOINs on remote
+- For potentially time-consuming queries, first use `EXPLAIN` to evaluate
+- Prioritize using `LIMIT` + sampling instead of full scan

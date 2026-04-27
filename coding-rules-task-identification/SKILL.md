@@ -1,93 +1,93 @@
 ---
-name: task-identification
-description: 准确识别用户意图：区分需要执行的任务和只需回答的问题，避免过度执行或仅提供解释。
+name: coding-rules-task-identification
+description: Accurately identify user intent - distinguish between tasks that need execution and questions that only need answers, avoiding over-execution or just providing explanations.
 ---
 
-# 任务与问题识别
+# Task vs Question Identification
 
-## 核心原则
+## Core Principle
 
-**准确判断用户意图，执行类任务用工具完成，回答类问题直接解释。**
+**Accurately determine user intent, complete execution tasks with tools, answer questions directly with explanations.**
 
-## 识别流程
+## Identification Process
 
 ```
-用户输入 → 分析意图特征
-├─ 执行类任务 → 使用工具执行 → 简洁总结
-└─ 回答类问题 → 直接回答（必要时查询）
+User Input → Analyze Intent Features
+├─ Execution Task → Use Tools to Execute → Brief Summary
+└─ Answer Question → Answer Directly (Query if necessary)
 ```
 
-## 执行类任务（需要使用工具）
+## Execution Tasks (Need to Use Tools)
 
-### 特征识别
-**明确动作词**：创建、修改、删除、更新、添加、实现、开发、编写、生成、修复、优化、重构、部署、配置、安装、运行、执行、测试
+### Feature Identification
+**Clear action words**: create, modify, delete, update, add, implement, develop, write, generate, fix, optimize, refactor, deploy, configure, install, run, execute, test
 
-**隐含执行意图**：
-- "帮我XX"、"给我XX"（后接具体操作）
-- 提供了具体的修改内容或要求
-- 有文件/代码引用（@文件）+ 改进性描述
+**Implicit execution intent**:
+- "Help me XX", "Give me XX" (followed by specific operation)
+- Provided specific modification content or requirements
+- Has file/code reference (@file) + improvement description
 
-### 处理方式
-1. 使用工具执行（Read、Write、StrReplace、Shell等）
-2. 完成后简洁总结
-3. 禁止只提供方案不执行（除非需要用户决策）
+### Handling Method
+1. Use tools to execute (Read, Write, StrReplace, Shell, etc.)
+2. Brief summary after completion
+3. Forbid only providing plan without execution (unless needs user decision)
 
-### 示例
-- "修改配置文件端口为8080" ✅ 执行
-- "创建用户登录API" ✅ 执行
-- "优化这段代码性能" ✅ 执行
+### Examples
+- "Modify config file port to 8080" ✅ Execute
+- "Create user login API" ✅ Execute
+- "Optimize this code performance" ✅ Execute
 
-## 回答类问题（只需要回答）
+## Answer Questions (Only Need to Answer)
 
-### 特征识别
-**疑问词**：是什么、为什么、怎么样、如何、有没有、能不能、会不会
+### Feature Identification
+**Question words**: what is, why, how, have/has, can/can't, will/won't
 
-**信息查询意图**：
-- 询问原理、概念、定义、最佳实践
-- 询问可能性、可行性、原因、解释
-- 无明确执行动作要求
+**Information query intent**:
+- Asking about principles, concepts, definitions, best practices
+- Asking about possibilities, feasibility, reasons, explanations
+- No clear execution action requirement
 
-### 处理方式
-1. 直接回答，提供清晰解释
-2. 必要时用Read/Grep查询信息
-3. 禁止主动修改或创建文件
+### Handling Method
+1. Answer directly, provide clear explanation
+2. Use Read/Grep to query information if necessary
+3. Forbid proactively modifying or creating files
 
-### 示例
-- "这段代码什么意思？" ✅ 回答
-- "为什么会出现这个错误？" ✅ 回答
-- "有哪些优化方案？" ✅ 回答
+### Examples
+- "What does this code mean?" ✅ Answer
+- "Why does this error occur?" ✅ Answer
+- "What are the optimization options?" ✅ Answer
 
-## 模糊场景判断
+## Ambiguous Scenario Judgment
 
-### "如何XX"型问题
-- 有具体代码/文件引用 → 倾向执行
-- 无具体上下文 → 倾向回答方法
+### "How to XX" Type Questions
+- Has specific code/file reference → Tends toward execution
+- No specific context → Tends toward answering methods
 
-### "能不能XX"型问题
-- 有文件引用 + 任务背景 → 倾向执行
-- 纯询问语气 → 倾向回答可行性
+### "Can/Can't XX" Type Questions
+- Has file reference + task background → Tends toward execution
+- Pure inquiry tone → Tends toward answering feasibility
 
-### 判断策略
-**倾向执行的信号**：
-- 提供了文件路径或@文件引用
-- 有明确任务背景
-- 语气坚定、指令性强
+### Judgment Strategy
+**Signals tending toward execution**:
+- Provided file path or @file reference
+- Has clear task background
+- Firm tone, instructional
 
-**倾向回答的信号**：
-- 纯理论性、概念性询问
-- 无具体上下文
-- 探索性、咨询性语气
+**Signals tending toward answer**:
+- Pure theoretical, conceptual inquiry
+- No specific context
+- Exploratory, consultative tone
 
-## 错误行为避免
+## Avoiding Error Behaviors
 
-### ❌ 过度执行
-用户："这段代码有什么问题？"
-- 错误：直接修改代码 ❌
-- 正确：分析问题，说明原因 ✅
+### ❌ Over-Execution
+User: "What's wrong with this code?"
+- Wrong: Directly modify code ❌
+- Right: Analyze problem, explain reason ✅
 
-### ❌ 只说不做
-用户："修改配置文件端口为8080"
-- 错误：只解释如何修改 ❌
-- 正确：直接修改，简洁总结 ✅
+### ❌ Only Talk, Don't Do
+User: "Modify config file port to 8080"
+- Wrong: Only explain how to modify ❌
+- Right: Directly modify, brief summary ✅
 
-**记住：任务要执行，问题要回答，不确定时先明确意图。**
+**Remember: Tasks need execution, questions need answers, clarify intent when uncertain.**

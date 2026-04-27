@@ -1,64 +1,64 @@
 ---
-name: no-report-files
-description: 禁止生成报告、清单、说明类文档，在回复中进行关键特性总结即可。
+name: coding-rules-no-report-files
+description: Forbidden to generate report, checklist, and guide documents. Summarize key features in response.
 ---
 
-# 禁止生成文档类文件
+# Forbidden to Generate Document Files
 
-## 核心原则
+## Core Principle
 
-**禁止生成报告、清单、说明、指南等文档类文件。完成工作后，在回复中进行关键特性总结，无需生成独立文档。**
+**Forbidden to generate report, checklist, guide, and similar document files. After completing work, summarize key features in response, no need to generate independent documents.**
 
-## 禁止生成的文件类型
+## Forbidden File Types
 
-- **报告类**：`*报告.md`、进度报告、验证报告、分析报告
-- **清单类**：`*清单.md`、执行清单、部署清单、检查清单
-- **说明类**：`*说明.md`、修复说明、使用说明、操作指南
-- **记录类**：`*记录.md`、Schema记录、类型对照表、字段记录
-- **汇总类**：`完整*.sql`、`剩余*.sql`、汇总SQL、补充SQL
+- **Report types**: `*Report.md`, progress reports, verification reports, analysis reports
+- **Checklist types**: `*Checklist.md`, execution checklists, deployment checklists, inspection checklists
+- **Guide types**: `*Guide.md`, fix guides, usage guides, operation guides
+- **Record types**: `*Record.md`, schema records, type reference tables, field records
+- **Summary types**: `Complete*.sql`, `Remaining*.sql`, summary SQL, supplementary SQL
 
-## 正确的输出方式
+## Correct Output Methods
 
-### ✅ 只生成核心可执行文件
-- 实际代码：`.sql`、`.py`、`.js`、`.ts`
-- DDL定义：`PostgreSQL_DDL.sql`
-- 配置文件：`.json`、`.yaml`、`.env`
-- 可直接运行的脚本
+### ✅ Only Generate Core Executable Files
+- Actual code: `.sql`, `.py`, `.js`, `.ts`
+- DDL definitions: `PostgreSQL_DDL.sql`
+- Config files: `.json`, `.yaml`, `.env`
+- Directly runnable scripts
 
-### ✅ 在回复中进行关键特性总结
+### ✅ Summarize Key Features in Response
 
-**不是只输出2-3句话，而是进行关键特性的总结**
+**Not just 2-3 sentences, but summarize key features**
 
-格式示例：
+Format example:
 ```
-已完成：
-- 更新了dim_item、dim_bom的ETL定义
-- 关键修复：UUID保持STRING类型，dr改为INT类型
+Completed:
+- Updated ETL definitions for dim_item, dim_bom
+- Key fixes: UUID maintains STRING type, dr changed to INT type
 
-关键特性：
-- 支持实时数据同步，延迟<5秒
-- 采用增量更新策略，性能提升70%
-- 新增数据质量校验规则
+Key Features:
+- Supports real-time data sync, latency <5s
+- Uses incremental update strategy, 70% performance improvement
+- Added data quality validation rules
 
-注意事项：
-- 需要重启服务生效
-- 兼容旧版本数据格式
+Notes:
+- Requires service restart to take effect
+- Compatible with old version data format
 ```
 
-**重点：在回复中说明即可，不要生成独立的文档文件**
+**Key point: Explain in response, don't generate independent document files**
 
-## 工作流程
+## Workflow
 
-1. **查询/分析**：直接使用工具，不记录查询结果到文件
-2. **修复**：直接修改目标文件，不生成对照文件、说明文件
-3. **验证**：可生成临时测试文件，验证后合并到主文件并删除
-4. **完成**：在回复中总结关键特性，不生成独立总结文档
+1. **Query/Analysis**: Directly use tools, don't record query results to files
+2. **Fix**: Directly modify target files, don't generate comparison files, guide files
+3. **Verification**: Can generate temporary test files, merge to main file after verification and delete
+4. **Completion**: Summarize key features in response, don't generate independent summary documents
 
-## 特殊情况
+## Special Cases
 
-仅当用户明确请求时才生成文档类文件：
-- "生成一份部署文档"
-- "写一个使用说明"
-- "创建执行清单"
+Only generate document files when user explicitly requests:
+- "Generate a deployment document"
+- "Write a usage guide"
+- "Create execution checklist"
 
-**记住：可以在回复中详细总结关键特性，但不要生成独立的报告、清单、说明文档。**
+**Remember: Can summarize key features in detail in response, but don't generate independent report, checklist, guide documents.**
