@@ -20,7 +20,7 @@ When sensing any of the following signals, context is about to be exhausted, mus
 
 ### 1. Rules (Highest Priority - NEVER COMPRESS)
 
-**🔴 CRITICAL RULES (16个核心规则 - 绝对不可压缩):**
+**🔴 CRITICAL RULES (17个核心规则 - 绝对不可压缩):**
 
 #### 核心执行规则（必须完整保留）
 1. ✅ **00-CORE-ENFORCEMENT.mdc** - 核心强制执行规则（最高优先级）
@@ -29,22 +29,23 @@ When sensing any of the following signals, context is about to be exhausted, mus
 4. ✅ **no-reckless-file-deletion.mdc** - 禁止粗暴删除文件
 5. ✅ **plan-approval-mandatory.mdc** - 方案执行前强制确认
 6. ✅ **ask-timeout-retry-mandatory.mdc** - AskQuestion超时必须重新提问
+7. ✅ **no-unnecessary-divergence.mdc** - 禁止不必要的思维发散（NEW）
 
 #### 用户交互规则（强制使用AskQuestion）
-7. ✅ **decision-change-approval.mdc** - 🔴 所有用户选择必须使用AskQuestion工具
+8. ✅ **decision-change-approval.mdc** - 🔴 所有用户选择必须使用AskQuestion工具
 
 #### 核心原则规则
-8. ✅ **adaptive-thinking.mdc** - 自适应思考深度控制
-9. ✅ **no-assumption-core.mdc** - 零臆想原则
-10. ✅ **no-inference-verification-required.mdc** - 禁止推断，必须验证
-11. ✅ **data-driven-decisions.mdc** - 数据驱动决策
-12. ✅ **task-vs-question-identification.mdc** - 任务与问题识别
-13. ✅ **no-report-files.mdc** - 禁止生成报告文档
-14. ✅ **plan-before-implementation.mdc** - 计划优先原则
+9. ✅ **adaptive-thinking.mdc** - 自适应思考深度控制
+10. ✅ **no-assumption-core.mdc** - 零臆想原则
+11. ✅ **no-inference-verification-required.mdc** - 禁止推断，必须验证
+12. ✅ **data-driven-decisions.mdc** - 数据驱动决策
+13. ✅ **task-vs-question-identification.mdc** - 任务与问题识别
+14. ✅ **no-report-files.mdc** - 禁止生成报告文档
+15. ✅ **plan-before-implementation.mdc** - 计划优先原则
 
 #### 工作流程规则
-15. ✅ **essential-problem-focus.mdc** - 本质问题聚焦
-16. ✅ **rules-self-check.mdc** - Rules自我监督机制
+16. ✅ **essential-problem-focus.mdc** - 本质问题聚焦
+17. ✅ **rules-self-check.mdc** - Rules自我监督机制
 
 **Why**: Rules are mandatory constraints that govern all AI behavior. Losing rules = violating core principles.
 
@@ -54,6 +55,7 @@ When sensing any of the following signals, context is about to be exhausted, mus
 - 🔴 **zero-speculation-mandatory.mdc** must NEVER be compressed (零臆想自检)
 - 🔴 **plan-approval-mandatory.mdc** must NEVER be compressed (方案执行确认)
 - 🔴 **ask-timeout-retry-mandatory.mdc** must NEVER be compressed (超时重新提问)
+- 🔴 **no-unnecessary-divergence.mdc** must NEVER be compressed (思维聚焦 - NEW)
 
 ### 2. Current Task Context
 - ✅ Active task description
@@ -120,31 +122,34 @@ The following content can be safely compressed:
 ## Context Compression Summary
 
 ### ⚠️ Rules Status
-✅ All 16 Rules remain active and enforced (NEVER compressed):
+✅ All 17 Rules remain active and enforced (NEVER compressed)
+📊 Total: 521 lines (Chinese) + 521 lines (English) = 1042 lines
+🎯 Streamlined 87.5% from 4166 lines, maintaining strong control
 
-**🔴 核心执行规则（6个）:**
-- 00-CORE-ENFORCEMENT - 核心强制执行
-- zero-speculation-mandatory - 零臆想强制执行
-- solve-not-suppress - 解决问题而非干掉问题
-- no-reckless-file-deletion - 禁止粗暴删除文件
-- plan-approval-mandatory - 方案执行前强制确认
-- ask-timeout-retry-mandatory - AskQuestion超时必须重新提问
+**🔴 Core Execution Rules (7):**
+- 00-CORE-ENFORCEMENT (49 lines)
+- zero-speculation-mandatory (70 lines)
+- solve-not-suppress (33 lines)
+- no-reckless-file-deletion (40 lines)
+- plan-approval-mandatory (38 lines)
+- ask-timeout-retry-mandatory (31 lines)
+- no-unnecessary-divergence (37 lines)
 
-**🔴 用户交互规则（1个）:**
-- decision-change-approval - 所有用户选择必须使用AskQuestion工具
+**🔴 User Interaction Rules (1):**
+- decision-change-approval (34 lines)
 
-**⚠️ 核心原则规则（7个）:**
-- adaptive-thinking - 自适应思考
-- no-assumption-core - 零臆想原则
-- no-inference-verification-required - 禁止推断
-- data-driven-decisions - 数据驱动决策
-- task-vs-question-identification - 任务识别
-- no-report-files - 禁止生成报告
-- plan-before-implementation - 计划优先原则
+**⚠️ Core Principle Rules (7):**
+- adaptive-thinking (23 lines)
+- no-assumption-core (22 lines)
+- no-inference-verification-required (21 lines)
+- data-driven-decisions (23 lines)
+- task-vs-question-identification (18 lines)
+- no-report-files (20 lines)
+- plan-before-implementation (21 lines)
 
-**ℹ️ 工作流程规则（2个）:**
-- essential-problem-focus - 本质问题聚焦
-- rules-self-check - Rules自我监督机制
+**ℹ️ Workflow Rules (2):**
+- essential-problem-focus (17 lines)
+- rules-self-check (24 lines)
 
 ### 📋 Current Task
 [One sentence description]
@@ -181,5 +186,5 @@ Follow these principles throughout session to slow context consumption:
 - When generating large documents, use Python scripts instead of writing line by line
 - When tool call results exceed 100 lines, extract key information and don't reference original output again
 - Update TODO list after completing each milestone to ensure progress traceable
-- **CRITICAL**: Never compress or summarize Rules content - always keep all 16 rules fully accessible
-- **ESPECIALLY**: decision-change-approval (AskQuestion使用), 00-CORE-ENFORCEMENT (核心执行), zero-speculation-mandatory (零臆想), plan-approval-mandatory (方案确认), ask-timeout-retry-mandatory (超时重试) must ALWAYS remain fully loaded
+- **CRITICAL**: Never compress or summarize Rules content - always keep all 17 rules fully accessible
+- **ESPECIALLY**: decision-change-approval (AskQuestion使用), 00-CORE-ENFORCEMENT (核心执行), zero-speculation-mandatory (零臆想), plan-approval-mandatory (方案确认), ask-timeout-retry-mandatory (超时重试), no-unnecessary-divergence (思维聚焦) must ALWAYS remain fully loaded
