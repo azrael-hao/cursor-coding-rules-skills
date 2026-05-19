@@ -1,105 +1,167 @@
 # Cursor Coding Skills
 
-Optimized Cursor Skills collection for task-specific capabilities and tools.
+Professional collection of Cursor Agent Skills following official standards from [cursor.com/docs/skills](https://cursor.com/cn/docs/skills).
 
 [中文文档](./README_zh.md)
 
-## ✅ Correct Directory Structure
+## Skills Directory Structure
 
 ```
 skills-cursor/
-├── coding-rules-context-compression/SKILL.md   ℹ️ Context Compression
-├── coding-rules-remote-cleanup/SKILL.md        ℹ️ Remote Process Cleanup
-├── coding-rules-github-cli/SKILL.md            🛠️ GitHub CLI Guide
-└── coding-rules-zh/                            📁 Chinese Versions (Backup)
+├── coding-rules-core-enforcement/       🔴 Highest Priority
+├── coding-rules-context-compression/    📊 Core Workflow
+├── coding-rules-no-assumption/          ⚠️ Core Principles
+├── coding-rules-no-inference/           ⚠️ Core Principles  
+├── coding-rules-decision-approval/      ⚠️ Core Principles
+├── coding-rules-task-identification/    ⚠️ Core Principles
+├── coding-rules-problem-focus/          📝 Workflow Tools
+├── coding-rules-no-report-files/        📝 Workflow Tools
+├── coding-rules-github-cli/             🛠️ Tool Guides
+└── coding-rules-remote-cleanup/         🛠️ Tool Guides
 ```
 
-## 📋 Skills List (3 Skills)
+## Skills List (10 Total)
 
-### ℹ️ Workflow Tools (2)
-- **coding-rules-context-compression** - Context compression strategy when approaching capacity
+### 🔴 Highest Priority (1)
+- **coding-rules-core-enforcement** - Core mandatory rules, essential summary
+
+### ⚠️ Core Principles (4)
+- **coding-rules-no-assumption** - Zero speculation, must verify all facts
+- **coding-rules-no-inference** - No inference without verification
+- **coding-rules-decision-approval** - All user choices use AskQuestion tool
+- **coding-rules-task-identification** - Distinguish tasks vs questions
+
+### 📊 Core Workflow (1)
+- **coding-rules-context-compression** - Context compression strategy
+
+### 📝 Workflow Tools (2)
+- **coding-rules-problem-focus** - Focus on differences for comparisons
+- **coding-rules-no-report-files** - Forbid generating report documents
+
+### 🛠️ Tool Guides (2)
+- **coding-rules-github-cli** - GitHub CLI setup and configuration
 - **coding-rules-remote-cleanup** - Remote process cleanup specification
 
-### 🛠️ Tool Configuration (1)
-- **coding-rules-github-cli** - GitHub CLI configuration and usage guide
+## Rules vs Skills
 
-## 🎯 Skills vs Rules Distinction
-
-### Skills (This Repository)
-- **Purpose**: Provide capabilities and methods
-- **Trigger**: User @reference or description conditions
-- **Scenario**: Complete specific tasks
-- **Characteristics**: Tool-oriented, optional, task-specific
-- **Examples**: How to analyze problems, optimize performance, use tools
-
-### Rules (Another Repository)
-- **Purpose**: Enforce constraints and standards
-- **Trigger**: `alwaysApply: true` automatically effective
-- **Scenario**: Must-follow rules like coding standards
-- **Characteristics**: Mandatory, automatic, global
+### Rules (Behavioral Constraints)
+- **Location**: `~/.cursor/rules/*.mdc`
+- **Characteristics**: Mandatory, auto-enabled (alwaysApply: true)
+- **Content**: NEVER/MUST principles, prohibitions
 - **Repository**: https://github.com/azrael-hao/cursor-global-rules
 
-## 📦 Installation
+### Skills (Method Guides) - THIS REPOSITORY
+- **Location**: `~/.cursor/skills/skills-cursor/*.md`
+- **Characteristics**: On-demand, agent decides when relevant
+- **Content**: HOW TO execute, step-by-step guides
+- **Repository**: https://github.com/azrael-hao/cursor-coding-rules-skills
 
-### Method 1: Clone Locally
+## Installation
+
+### Method 1: Git Clone (Recommended)
+
 ```bash
-cd ~/.cursor/
+cd ~/.cursor/skills/
 git clone https://github.com/azrael-hao/cursor-coding-rules-skills.git skills-cursor
 ```
 
-### Method 2: Manual Download
+### Method 2: GitHub Integration (Cursor 2.4+)
+
+1. Open **Cursor Settings** → **Rules**
+2. Click **Add Rule** → **Remote Rule (Github)**
+3. Enter: `https://github.com/azrael-hao/cursor-coding-rules-skills`
+
+### Method 3: Manual Download
+
 1. Download this repository
-2. Extract to `~/.cursor/skills-cursor/` (Windows: `%USERPROFILE%\.cursor\skills-cursor\`)
+2. Extract to:
+   - Windows: `%USERPROFILE%\.cursor\skills\skills-cursor\`
+   - macOS/Linux: `~/.cursor/skills/skills-cursor/`
 
-## 🎓 Usage
+## Usage
 
-### Reference Skills in Cursor:
+### Reference Skills in Cursor
+
+Type `@` in chat to see available skills:
+
 ```
-@coding-rules-context-compression
-@coding-rules-remote-cleanup
-@coding-rules-github-cli
+@coding-rules-core-enforcement
+@coding-rules-no-assumption
+@coding-rules-decision-approval
 ```
 
-### View Available Skills:
-Type `@coding-rules-` in Cursor to see all available skills
+### Agent Auto-Invocation
 
-## 📊 Optimization Record
+Skills are automatically invoked by the agent when relevant. For example:
+- User asks comparison → `coding-rules-problem-focus` auto-loads
+- Agent needs decision → `coding-rules-decision-approval` auto-loads
+- Context filling up → `coding-rules-context-compression` auto-loads
 
-- **Original Count**: 11 skill directories
-- **Optimized**: 4 directories (3 skills + 1 Chinese backup)
-- **Reduction**: 64%
-- **Optimization Principle**: 
-  - Removed duplicates (already exist as Rules)
-  - Kept tool-oriented, task-specific skills
-  - Separated mandatory rules to Rules repository
+## Official Standards Compliance
 
-## 🌐 GitHub Repository
+Following [Cursor Agent Skills](https://cursor.com/cn/docs/skills) official specification:
 
-- **Repository**: https://github.com/azrael-hao/cursor-coding-rules-skills
-- **Branch**: main
-- **Languages**: English (default), Chinese (in coding-rules-zh/)
+- ✅ Flat directory structure (not nested, to ensure auto-discovery)
+- ✅ SKILL.md format with YAML frontmatter
+- ✅ Concise description field (agent uses for relevance judgment)
+- ✅ Name field matches parent folder
+- ✅ Lowercase names with hyphens only
 
-## ⚡ Quick Reference
+## Statistics
 
-| Skill Name | Purpose | Type |
-|-----------|---------|------|
-| context-compression | Context management strategy | ℹ️ Workflow |
-| remote-cleanup | Remote process cleanup | ℹ️ Workflow |
-| github-cli | GitHub CLI usage guide | 🛠️ Tool |
+- **Total Skills**: 10
+- **Total Lines**: ~800 lines
+- **Format**: Official SKILL.md standard
+- **Languages**: English (primary), Chinese versions available in Rules repo
 
-## 📝 Relationship with Rules
+## Development
 
-This Skills repository complements the Rules repository:
-- **Rules**: Mandatory constraints, auto-loaded (9 rules)
-- **Skills**: Optional tools, on-demand usage (3 skills)
-- **Separation**: Clear distinction, no duplication
+### Add New Skill
 
-Related repositories:
-- Rules: https://github.com/azrael-hao/cursor-global-rules
-- Skills: https://github.com/azrael-hao/cursor-coding-rules-skills (current)
+1. Create folder: `new-skill/`
+2. Create file: `new-skill/SKILL.md`
+3. Add frontmatter:
+
+```yaml
+---
+name: new-skill
+description: Brief description of when to use this skill.
+---
+
+# Skill Title
+
+Detailed instructions for the agent...
+```
+
+### Commit and Push
+
+```bash
+git add .
+git commit -m "feat: add new-skill"
+git push origin main
+```
+
+## Quick Reference
+
+| Skill | When Agent Invokes | Priority |
+|-------|-------------------|----------|
+| core-enforcement | Every operation | 🔴 Critical |
+| no-assumption | Before accessing fields/methods | ⚠️ High |
+| no-inference | Before making claims | ⚠️ High |
+| decision-approval | User choice needed | ⚠️ High |
+| task-identification | Unclear request type | ⚠️ High |
+| context-compression | Context near limit | 📊 Medium |
+| problem-focus | Comparison questions | 📝 Medium |
+| no-report-files | About to create .md file | 📝 Medium |
+| github-cli | Managing rules repo | 🛠️ Low |
+| remote-cleanup | Terminating processes | 🛠️ Low |
+
+## Related Resources
+
+- **Rules Repository**: [cursor-global-rules](https://github.com/azrael-hao/cursor-global-rules)
+- **Official Docs**: [cursor.com/docs/skills](https://cursor.com/cn/docs/skills)
+- **Open Standard**: [agentskills.io](https://agentskills.io)
 
 ---
 
-**Made with ❤️ for Cursor AI**
-
-**Last Updated**: April 27, 2026
+**Optimized for Cursor Agent · Following Official Standards · MIT License**

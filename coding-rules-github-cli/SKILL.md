@@ -1,6 +1,6 @@
 ---
 name: coding-rules-github-cli
-description: GitHub CLI installation, proxy configuration, and global rules repository synchronization.
+description: GitHub CLI setup and proxy configuration. Use when managing rules repository or need gh commands reference.
 ---
 
 # GitHub CLI Connection and Global Rules Management

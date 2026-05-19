@@ -1,6 +1,6 @@
 ---
 name: coding-rules-context-compression
-description: When dialogue context approaches capacity limit, automatically perform context compression to maintain session continuity.
+description: Context compression strategy when approaching capacity limit. Preserves all 20 rules intact while compressing dialogue history.
 ---
 
 # Context Compression
