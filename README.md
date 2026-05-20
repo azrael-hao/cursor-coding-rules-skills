@@ -6,19 +6,61 @@ Professional collection of Cursor Agent Skills following official standards from
 
 ## Skills Directory Structure
 
+### Standard Structure (v2.0)
+Each skill now follows a standardized directory layout:
+
+```
+skill-name/
+├── SKILL.md                # Main skill documentation (required)
+├── scripts/                # Executable scripts and tools
+│   ├── validate.sh        # Validation scripts
+│   └── analyze.py         # Analysis tools
+├── references/            # Reference documentation
+│   └── REFERENCE.md       # Usage examples, history, best practices
+└── assets/               # Configuration and resource files
+    └── config.json       # Configuration templates
+```
+
+### Skills Catalog
+
 ```
 skills-cursor/
 ├── coding-rules-core-enforcement/       🔴 Highest Priority
+│   ├── SKILL.md
+│   ├── scripts/validate.sh
+│   ├── references/REFERENCE.md
+│   └── assets/
 ├── coding-rules-context-compression/    📊 Core Workflow
-├── coding-rules-no-assumption/          ⚠️ Core Principles
-├── coding-rules-no-inference/           ⚠️ Core Principles  
+│   ├── SKILL.md
+│   ├── scripts/analyze_context.py
+│   ├── references/REFERENCE.md
+│   └── assets/
 ├── coding-rules-decision-approval/      ⚠️ Core Principles
+│   ├── SKILL.md
+│   ├── references/REFERENCE.md
+│   └── assets/
+├── coding-rules-no-assumption/          ⚠️ Core Principles
+├── coding-rules-no-inference/           ⚠️ Core Principles
 ├── coding-rules-task-identification/    ⚠️ Core Principles
 ├── coding-rules-problem-focus/          📝 Workflow Tools
 ├── coding-rules-no-report-files/        📝 Workflow Tools
 ├── coding-rules-github-cli/             🛠️ Tool Guides
-└── coding-rules-remote-cleanup/         🛠️ Tool Guides
+├── coding-rules-remote-cleanup/         🛠️ Tool Guides
+└── coding-rules-zh/                    🇨🇳 Chinese Version
+    └── coding-rules-*/                 (Same structure)
 ```
+
+## Version History
+
+### v2.0 (2026-05-20) - Integration & Standardization
+- **Rules**: Consolidated from 20 to 10 rules (50% reduction)
+- **Skills**: Added standardized directory structure (scripts/, references/, assets/)
+- **Documentation**: Created reference docs for core skills
+- **Tools**: Added validation and analysis scripts
+
+### v1.0 - Initial Release
+- 20 individual rule files
+- Basic skill structure (SKILL.md only)
 
 ## Skills List (10 Total)
 
